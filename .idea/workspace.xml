@@ -608,8 +608,6 @@
       <change afterPath="$PROJECT_DIR$/../udemy/web-server/templates/views/404.hbs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../udemy/web-server/templates/views/about.hbs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../udemy/web-server/templates/views/index.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checker.js" beforeDir="false" afterPath="$PROJECT_DIR$/checker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-tester/.idea/docker-tester.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-tester/.idea/jsLibraryMappings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-tester/.idea/misc.xml" beforeDir="false" />
@@ -973,8 +971,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/checker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -1062,12 +1060,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559921804670</updated>
-      <workItem from="1559921805914" duration="2455000" />
+      <workItem from="1559921805914" duration="2724000" />
     </task>
+    <task id="LOCAL-00001" summary="httpifyed">
+      <created>1559927027501</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559927027501</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2455000" />
+    <option name="totallyTimeSpent" value="2724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2560" y="23" width="2560" height="1417" extended-state="0" />
@@ -1078,12 +1084,12 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24980268" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" weight="0.3284839" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32924962" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.3284839" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32924962" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32924962" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1096,14 +1102,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="httpifyed" />
+    <option name="LAST_COMMIT_MESSAGE" value="httpifyed" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/checker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
