@@ -32,7 +32,7 @@ http.createServer(((req, res) => {
             returnList.containers.push(container.Names[0].substring(1))
         })
     }
-    else if(q.ls==='true')
+    else
     {
         returnList.containers.length=0
         containerList.containers.forEach((container)=>
