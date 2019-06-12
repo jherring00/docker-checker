@@ -32,6 +32,23 @@ http.createServer(((req, res) => {
             returnList.containers.push(container.Names[0].substring(1))
         })
     }
+    else if(q.ls==='true')
+    {
+        returnList.containers.length=0
+        containerList.containers.forEach((container)=>
+        {
+            returnList.containers.push(
+
+                {
+                    containerId: container.Id,
+                    image: container.Image,
+                    command: container.Command,
+                    status: container.Status,
+                    port: container.Ports[0].PrivatePort +'/'+container.Ports[0].Type,
+                    name: container.Names[0].substring(1),
+                })
+        })
+    }
     res.end( JSON.stringify(returnList), null, 3 )
 })).listen(3000,'172.16.1.161')
 
