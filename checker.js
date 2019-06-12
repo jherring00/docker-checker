@@ -15,25 +15,25 @@ http.createServer(((req, res) => {
     var q = url.parse(req.url, true).query
 
     if(q.inspect) {
+        returnList.containers.length=0
         containerList.containers.forEach((container)=>
         {
             if(container.Names[0].substring(1)===q.inspect)
             {
-                returnList.containers.length=0
                 returnList.containers.push(container)
             }
         })
     }
     else if(q.listNames==='true')
     {
+        returnList.containers.length=0
         containerList.containers.forEach((container)=>
         {
-            returnList.containers.length=0
             returnList.containers.push(container.Names[0].substring(1))
         })
     }
     res.end( JSON.stringify(returnList), null, 3 )
-})).listen(3000,'localhost')
+})).listen(3000,'172.16.1.161')
 
 
 
