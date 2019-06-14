@@ -3,15 +3,17 @@ var docker = new Docker({socketPath: '/var/run/docker.sock'});
 var url = require("url")
 var containerList = { containers: [] }
 var returnList = { containers: [] }
+var cors = require('cors')
 
 docker.listContainers(function (err, containers) {
     containers.forEach(function (containerInfo) {
         containerList.containers.push(containerInfo)
     });
 });
+
 var http = require('http');
 http.createServer(((req, res) => {
-    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:4200' });
     var q = url.parse(req.url, true).query
 
     if(q.inspect) {
@@ -42,7 +44,7 @@ http.createServer(((req, res) => {
                 {
                     containerId: container.Id,
                     image: container.Image,
-                    command: container.Command,
+                    state: container.State,
                     status: container.Status,
                     port: container.Ports[0].PrivatePort +'/'+container.Ports[0].Type,
                     name: container.Names[0].substring(1),
@@ -50,7 +52,7 @@ http.createServer(((req, res) => {
         })
     }
     res.end( JSON.stringify(returnList), null, 3 )
-})).listen(3000,'172.16.1.161')
+})).listen(3000,'localhost')
 
 
 
