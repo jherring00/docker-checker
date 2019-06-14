@@ -13,7 +13,7 @@ docker.listContainers(function (err, containers) {
 
 var http = require('http');
 http.createServer(((req, res) => {
-    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:4200' });
+    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://dev01.dev.onyxgs.com:4200' });
     var q = url.parse(req.url, true).query
 
     if(q.inspect) {
@@ -52,7 +52,7 @@ http.createServer(((req, res) => {
         })
     }
     res.end( JSON.stringify(returnList), null, 3 )
-})).listen(3000,'localhost')
+})).listen(3000,'dev01.dev.onyxgs.com')
 
 
 
