@@ -12,8 +12,10 @@ docker.listContainers(function (err, containers) {
 });
 
 var http = require('http');
+
+
 http.createServer(((req, res) => {
-    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://dev01.dev.onyxgs.com:4200' });
+    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     var q = url.parse(req.url, true).query
 
     if(q.inspect) {
