@@ -1,61 +1,64 @@
 var Docker = require('dockerode');
 var docker = new Docker({socketPath: '/var/run/docker.sock'});
-var url = require("url")
-var containerList = { containers: [] }
+
 var returnList = { containers: [] }
-var cors = require('cors')
+const express = require('express')
+const path = require('path')
+const app = express()
 
-docker.listContainers(function (err, containers) {
-    containers.forEach(function (containerInfo) {
-        containerList.containers.push(containerInfo)
-    });
-});
+app.get('/', (req, res)=> {
+    var containerList = {containers: []}
+    docker.listContainers((err, containers) =>{
+        containers.forEach((containerInfo)=>{
+            containerList.containers.push(containerInfo)
+        });
+        res.set({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+        res.send(containerList)
+    })
+})
 
-var http = require('http');
 
+app.get("/summary", (req,res)=>
+{
+    var containerList = {containers: []}
+    docker.listContainers((err, containers)=> {
+        containers.forEach((container)=> {
+            containerList.containers.push({
+                containerId: container.Id,
+                image: container.Image,
+                state: container.State,
+                status: container.Status,
+                port: container.Ports[0].PrivatePort +'/'+container.Ports[0].Type,
+                name: container.Names[0].substring(1),})
+        })
+        });
+        res.set({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+        res.send(containerList)
+})
 
-http.createServer(((req, res) => {
-    res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    var q = url.parse(req.url, true).query
-
-    if(q.inspect) {
-        returnList.containers.length=0
-        containerList.containers.forEach((container)=>
-        {
-            if(container.Names[0].substring(1)===q.inspect)
+app.get("/inspect", (req,res)=>
+{
+    var containerList = {containers: []}
+    if(req.query.containerName)
+    {
+        console.log(req.query.containerName)
+        docker.listContainers((err, containers)=> {
+            containers.forEach((container)=>
             {
-                returnList.containers.push(container)
-            }
-        })
-    }
-    else if(q.listNames==='true')
-    {
-        returnList.containers.length=0
-        containerList.containers.forEach((container)=>
-        {
-            returnList.containers.push(container.Names[0].substring(1))
-        })
-    }
-    else
-    {
-        returnList.containers.length=0
-        containerList.containers.forEach((container)=>
-        {
-            returnList.containers.push(
+                console.log(container.Names[0].substring(1))
 
+                if(container.Names[0].substring(1)===req.query.containerName)
                 {
-                    containerId: container.Id,
-                    image: container.Image,
-                    state: container.State,
-                    status: container.Status,
-                    port: container.Ports[0].PrivatePort +'/'+container.Ports[0].Type,
-                    name: container.Names[0].substring(1),
-                })
+                    containerList.containers.push(container)
+                    res.set({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+                    res.send(container)
+                }
+            })
         })
     }
-    res.end( JSON.stringify(returnList), null, 3 )
-})).listen(3000,'dev01.dev.onyxgs.com')
 
+})
 
+app.listen(3000);
 
 
