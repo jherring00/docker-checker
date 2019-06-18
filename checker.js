@@ -1,9 +1,6 @@
 var Docker = require('dockerode');
 var docker = new Docker({socketPath: '/var/run/docker.sock'});
-
-var returnList = { containers: [] }
 const express = require('express')
-const path = require('path')
 const app = express()
 
 app.get('/', (req, res)=> {
@@ -16,11 +13,8 @@ app.get('/', (req, res)=> {
         res.send(containerList)
     })
 })
-
-
-app.get("/summary", (req,res)=>
-{
-    var containerList = {containers: []}
+app.get("/summary", (req,res)=> {
+    var containerList = { containers: []}
     docker.listContainers((err, containers)=> {
         containers.forEach((container)=> {
             containerList.containers.push({
@@ -29,26 +23,22 @@ app.get("/summary", (req,res)=>
                 state: container.State,
                 status: container.Status,
                 port: container.Ports[0].PrivatePort +'/'+container.Ports[0].Type,
-                name: container.Names[0].substring(1),})
+                name: container.Names[0].substring(1),
+                })
         })
-        });
         res.set({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
         res.send(containerList)
+        })
 })
 
-app.get("/inspect", (req,res)=>
-{
+app.get("/inspect", (req,res)=> {
     var containerList = {containers: []}
-    if(req.query.containerName)
-    {
+    if(req.query.containerName) {
         console.log(req.query.containerName)
         docker.listContainers((err, containers)=> {
-            containers.forEach((container)=>
-            {
+            containers.forEach((container)=> {
                 console.log(container.Names[0].substring(1))
-
-                if(container.Names[0].substring(1)===req.query.containerName)
-                {
+                if(container.Names[0].substring(1)===req.query.containerName) {
                     containerList.containers.push(container)
                     res.set({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
                     res.send(container)
@@ -56,9 +46,8 @@ app.get("/inspect", (req,res)=>
             })
         })
     }
-
 })
 
-app.listen(3000);
+app.listen(3000,"dev01.dev.onyxgs.com");
 
 
