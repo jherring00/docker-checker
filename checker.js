@@ -48,6 +48,6 @@ app.get("/inspect", (req,res)=> {
     }
 })
 
-app.listen(3000,"dev01.dev.onyxgs.com");
+app.listen(3030,"localhost");
 
 
